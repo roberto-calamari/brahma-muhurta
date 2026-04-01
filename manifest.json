@@ -2,7 +2,7 @@
   "name": "Brahma Muhurta",
   "short_name": "Brahma Muhurta",
   "description": "Calculate your daily Brahma Muhurta window and set your alarm",
-  "start_url": "/",
+  "start_url": "./",
   "display": "standalone",
   "background_color": "#04030f",
   "theme_color": "#04030f",
