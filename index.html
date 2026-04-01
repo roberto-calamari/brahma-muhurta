@@ -15,7 +15,6 @@
 <title>Brahma Muhurta</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
-
 :root {
   --gold:       #f0cc78;
   --gold-mid:   rgba(220,185,100,0.55);
@@ -27,28 +26,19 @@
   --serif:      'Cormorant Garamond', Georgia, serif;
   --sans:       Georgia, serif;
 }
-
 html { height: -webkit-fill-available; }
-
 body {
-  min-height: 100vh;
-  min-height: -webkit-fill-available;
+  min-height: 100vh; min-height: -webkit-fill-available;
   background: #06040f;
   background-image:
     radial-gradient(ellipse 130% 55% at 25% 0%,  #0e0924 0%, transparent 58%),
     radial-gradient(ellipse 80%  70% at 85% 15%,  #110820 0%, transparent 52%),
     radial-gradient(ellipse 110% 45% at 50% 100%, #2c1508 0%, transparent 60%);
-  font-family: var(--serif);
-  color: var(--text);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  font-family: var(--serif); color: var(--text);
+  display: flex; flex-direction: column; align-items: center;
   padding: env(safe-area-inset-top, 0) 20px calc(env(safe-area-inset-bottom, 0) + 64px);
-  position: relative;
-  overflow-x: hidden;
+  position: relative; overflow-x: hidden;
 }
-
-/* IN-BM BODY STATE */
 body.in-bm {
   background-image:
     radial-gradient(ellipse 130% 55% at 25% 0%,  #1c0e00 0%, transparent 58%),
@@ -56,351 +46,167 @@ body.in-bm {
     radial-gradient(ellipse 110% 45% at 50% 100%, #3e2100 0%, transparent 60%);
 }
 body.in-bm::after {
-  content: '';
-  position: fixed; inset: 0;
+  content: ''; position: fixed; inset: 0;
   background: radial-gradient(ellipse 80% 45% at 50% 28%, rgba(255,138,12,0.07) 0%, transparent 70%);
-  pointer-events: none; z-index: 0;
-  animation: breathe 5s ease-in-out infinite;
+  pointer-events: none; z-index: 0; animation: breathe 5s ease-in-out infinite;
 }
 @keyframes breathe { 0%,100%{opacity:.45} 50%{opacity:1} }
-
-/* STARS */
 .stars { position: fixed; inset: 0; pointer-events: none; z-index: 0; }
 .star  { position: absolute; border-radius: 50%; background: #fff; }
 body.in-bm .star { background: #ffe8b0; }
-
-/* HORIZON GLOW */
 .horizon {
   position: fixed; bottom: 0; left: 0; right: 0; height: 160px;
   background: linear-gradient(to top, rgba(155,60,5,0.16), transparent);
   pointer-events: none; z-index: 0; transition: all 2.5s;
 }
 body.in-bm .horizon { height: 260px; background: linear-gradient(to top, rgba(210,95,5,0.3), transparent); }
-
-/* CONTENT WRAPPER */
 .content {
-  position: relative; z-index: 1;
-  width: 100%; max-width: 480px;
+  position: relative; z-index: 1; width: 100%; max-width: 480px;
   display: flex; flex-direction: column; align-items: center;
 }
-
-/* ══ IN-BM BANNER ══ */
 .bm-banner {
   display: none; width: 100%;
   background: linear-gradient(135deg, rgba(255,145,15,0.12), rgba(220,80,5,0.07));
-  border: 1px solid rgba(255,175,45,0.25);
-  border-radius: 22px; padding: 24px;
-  text-align: center; margin-bottom: 24px;
-  animation: banner-breathe 4.5s ease-in-out infinite;
+  border: 1px solid rgba(255,175,45,0.25); border-radius: 22px; padding: 24px;
+  text-align: center; margin-bottom: 24px; animation: banner-breathe 4.5s ease-in-out infinite;
 }
 body.in-bm .bm-banner { display: block; }
 @keyframes banner-breathe {
   0%,100% { box-shadow: 0 0 24px rgba(255,145,15,0.05); }
   50%      { box-shadow: 0 0 56px rgba(255,145,15,0.2), 0 0 110px rgba(220,80,5,0.06); }
 }
-.bm-om {
-  font-size: 30px; display: block; margin-bottom: 10px;
-  animation: om-glow 3.5s ease-in-out infinite;
-}
+.bm-om { font-size: 30px; display: block; margin-bottom: 10px; animation: om-glow 3.5s ease-in-out infinite; }
 @keyframes om-glow {
   0%,100% { filter: drop-shadow(0 0 4px rgba(255,190,60,0.35)); }
   50%      { filter: drop-shadow(0 0 18px rgba(255,190,60,1)); }
 }
 .bm-title { font-size: 20px; font-weight: 300; font-style: italic; letter-spacing: .08em; color: #ffd84a; margin-bottom: 6px; }
 .bm-sub   { font-family: var(--sans); font-size: 10px; letter-spacing: .26em; text-transform: uppercase; color: rgba(255,200,110,0.48); }
-
-/* ══ HEADER ══ */
 .moon {
   margin-top: 52px; font-size: 46px; line-height: 1;
-  filter: drop-shadow(0 0 20px rgba(240,200,100,0.42));
-  transition: filter 2.5s; user-select: none;
+  filter: drop-shadow(0 0 20px rgba(240,200,100,0.42)); transition: filter 2.5s; user-select: none;
 }
-body.in-bm .moon {
-  filter: drop-shadow(0 0 32px rgba(255,195,45,0.92));
-  animation: moon-swell 5s ease-in-out infinite;
-}
+body.in-bm .moon { filter: drop-shadow(0 0 32px rgba(255,195,45,0.92)); animation: moon-swell 5s ease-in-out infinite; }
 @keyframes moon-swell { 0%,100%{transform:scale(1)} 50%{transform:scale(1.06)} }
-
 h1 {
   font-size: clamp(30px, 7.5vw, 46px); font-weight: 300; letter-spacing: .1em;
-  color: var(--gold); margin: 14px 0 5px;
-  text-shadow: 0 0 44px rgba(240,200,100,0.28);
+  color: var(--gold); margin: 14px 0 5px; text-shadow: 0 0 44px rgba(240,200,100,0.28);
   text-align: center; transition: color 2.5s, text-shadow 2.5s;
 }
 body.in-bm h1 { color: #ffe04a; text-shadow: 0 0 54px rgba(255,210,50,0.48); }
-
-.subtitle {
-  font-family: var(--sans); font-size: 10px; letter-spacing: .3em;
-  text-transform: uppercase; color: var(--gold-mid); margin-bottom: 7px;
-}
-.today-label {
-  font-size: 13px; font-weight: 300; font-style: italic;
-  letter-spacing: .06em; color: var(--text-dim); margin-bottom: 42px;
-}
-
-/* ══ SECTION CARD ══ */
+.subtitle { font-family: var(--sans); font-size: 10px; letter-spacing: .3em; text-transform: uppercase; color: var(--gold-mid); margin-bottom: 7px; }
+.today-label { font-size: 13px; font-weight: 300; font-style: italic; letter-spacing: .06em; color: var(--text-dim); margin-bottom: 20px; }
 .card {
-  width: 100%; margin-bottom: 14px;
-  background: rgba(255,255,255,0.024);
-  border: 1px solid var(--gold-trace);
-  border-radius: 24px; padding: 26px 24px;
+  width: 100%; margin-bottom: 14px; background: rgba(255,255,255,0.024);
+  border: 1px solid var(--gold-trace); border-radius: 24px; padding: 26px 24px;
   backdrop-filter: blur(18px);
   box-shadow: 0 4px 36px rgba(0,0,0,0.38), inset 0 1px 0 rgba(255,215,100,0.055);
   transition: background 2.5s, border-color 2.5s;
 }
 body.in-bm .card { background: rgba(255,160,20,0.038); border-color: rgba(255,185,45,0.16); }
-
-.card-label {
-  font-family: var(--sans); font-size: 9.5px; letter-spacing: .28em;
-  text-transform: uppercase; color: var(--gold-dim);
-  margin-bottom: 16px; display: block;
-}
-
-/* ══ LOCATION SEARCH ══ */
+.card-label { font-family: var(--sans); font-size: 9.5px; letter-spacing: .28em; text-transform: uppercase; color: var(--gold-dim); margin-bottom: 16px; display: block; }
 .search-wrap { position: relative; }
-
 .search-input {
-  width: 100%; background: rgba(255,255,255,0.045);
-  border: 1px solid rgba(240,200,100,0.16);
-  border-radius: 13px; color: var(--text);
-  font-family: var(--serif); font-size: 17px; font-weight: 300;
-  padding: 13px 42px 13px 16px; outline: none; -webkit-appearance: none;
-  transition: border-color .25s; letter-spacing: .03em;
+  width: 100%; background: rgba(255,255,255,0.045); border: 1px solid rgba(240,200,100,0.16);
+  border-radius: 13px; color: var(--text); font-family: var(--serif); font-size: 17px; font-weight: 300;
+  padding: 13px 42px 13px 16px; outline: none; -webkit-appearance: none; transition: border-color .25s; letter-spacing: .03em;
 }
-.search-input:focus     { border-color: rgba(240,200,100,0.38); }
+.search-input:focus { border-color: rgba(240,200,100,0.38); }
 .search-input::placeholder { color: rgba(200,170,100,0.28); font-style: italic; }
 .search-input.confirmed { border-color: rgba(100,185,100,0.42); }
-
-.check-mark {
-  position: absolute; right: 14px; top: 50%;
-  transform: translateY(-50%);
-  color: #80d080; font-size: 16px; display: none; pointer-events: none;
-}
+.check-mark { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); color: #80d080; font-size: 16px; display: none; pointer-events: none; }
 .search-input.confirmed ~ .check-mark { display: block; }
-
-.search-hint {
-  font-family: var(--sans); font-size: 11px; letter-spacing: .06em;
-  font-style: italic; color: var(--text-faint); margin-top: 8px;
-  padding-left: 2px; transition: color .3s;
-}
+.search-hint { font-family: var(--sans); font-size: 11px; letter-spacing: .06em; font-style: italic; color: var(--text-faint); margin-top: 8px; padding-left: 2px; transition: color .3s; }
 .search-hint.ok { color: rgba(100,185,100,0.55); }
-
 .dropdown {
-  display: none; position: absolute;
-  top: calc(100% + 7px); left: 0; right: 0;
-  background: #0f0d20; border: 1px solid rgba(240,200,100,0.14);
-  border-radius: 15px; overflow: hidden;
-  z-index: 200; box-shadow: 0 14px 40px rgba(0,0,0,0.72);
-  max-height: 252px; overflow-y: auto;
+  display: none; position: absolute; top: calc(100% + 7px); left: 0; right: 0;
+  background: #0f0d20; border: 1px solid rgba(240,200,100,0.14); border-radius: 15px; overflow: hidden;
+  z-index: 200; box-shadow: 0 14px 40px rgba(0,0,0,0.72); max-height: 252px; overflow-y: auto;
 }
-.drop-item {
-  padding: 11px 16px; cursor: pointer;
-  border-bottom: 1px solid rgba(255,255,255,0.04); transition: background .1s;
-}
+.drop-item { padding: 11px 16px; cursor: pointer; border-bottom: 1px solid rgba(255,255,255,0.04); transition: background .1s; }
 .drop-item:last-child { border-bottom: none; }
 .drop-item:hover, .drop-item.focused { background: rgba(240,200,100,0.08); }
 .drop-main { font-size: 15px; font-weight: 300; color: #ecdcb0; letter-spacing: .02em; }
 .drop-sub  { font-size: 11px; color: rgba(200,165,90,0.42); margin-top: 2px; font-style: italic; }
-
-/* ══ DATE NAVIGATOR ══ */
-.date-nav {
-  display: flex; align-items: center;
-  justify-content: space-between; gap: 12px;
-}
+.date-nav { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
 .date-arrow {
-  background: rgba(255,255,255,0.035); border: 1px solid var(--gold-trace);
-  border-radius: 11px; color: var(--gold-mid); font-size: 19px;
-  width: 42px; height: 42px; cursor: pointer;
-  display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0; transition: all .2s; -webkit-appearance: none;
+  background: rgba(255,255,255,0.035); border: 1px solid var(--gold-trace); border-radius: 11px;
+  color: var(--gold-mid); font-size: 19px; width: 42px; height: 42px; cursor: pointer;
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all .2s; -webkit-appearance: none;
 }
 .date-arrow:hover { background: rgba(240,200,100,0.08); border-color: rgba(240,200,100,0.28); color: var(--gold); }
 .date-arrow:disabled { opacity: .2; cursor: default; }
-
 .date-center { flex: 1; text-align: center; }
-.date-tag-label {
-  font-family: var(--sans); font-size: 9px; letter-spacing: .24em;
-  text-transform: uppercase; color: var(--gold-dim); display: block; margin-bottom: 4px;
-}
-.date-main-text {
-  font-size: 19px; font-weight: 300; font-style: italic;
-  letter-spacing: .04em; color: var(--text);
-}
-
-/* ══ ALARM STEPPER ══ */
-.stepper-context {
-  font-family: var(--sans); font-size: 11px; font-style: italic;
-  letter-spacing: .06em; color: var(--text-faint);
-  text-align: center; margin-bottom: 22px;
-}
-
-/* The main stepper row: [−]  [NUMBER min]  [+] */
-.stepper-row {
-  display: flex; align-items: center;
-  justify-content: center; gap: 22px; margin-bottom: 20px;
-}
-
+.date-tag-label { font-family: var(--sans); font-size: 9px; letter-spacing: .24em; text-transform: uppercase; color: var(--gold-dim); display: block; margin-bottom: 4px; }
+.date-main-text { font-size: 19px; font-weight: 300; font-style: italic; letter-spacing: .04em; color: var(--text); }
+.stepper-context { font-family: var(--sans); font-size: 11px; font-style: italic; letter-spacing: .06em; color: var(--text-faint); text-align: center; margin-bottom: 22px; }
+.stepper-row { display: flex; align-items: center; justify-content: center; gap: 22px; margin-bottom: 20px; }
 .step-btn {
-  width: 50px; height: 50px; border-radius: 50%;
-  background: rgba(255,255,255,0.04);
-  border: 1px solid var(--gold-trace);
-  color: var(--gold-mid); font-size: 26px; font-weight: 300;
+  width: 50px; height: 50px; border-radius: 50%; background: rgba(255,255,255,0.04);
+  border: 1px solid var(--gold-trace); color: var(--gold-mid); font-size: 26px; font-weight: 300;
   cursor: pointer; display: flex; align-items: center; justify-content: center;
-  transition: all .18s; -webkit-appearance: none; flex-shrink: 0;
-  line-height: 1;
+  transition: all .18s; -webkit-appearance: none; flex-shrink: 0; line-height: 1;
 }
 .step-btn:hover  { background: rgba(240,200,100,0.09); border-color: rgba(240,200,100,0.3); color: var(--gold); }
 .step-btn:active { transform: scale(.91); }
-
-/* The number + "min" sit side-by-side on the same baseline */
-.step-value-group {
-  display: flex; align-items: baseline; gap: 7px;
-}
-
+.step-value-group { display: flex; align-items: baseline; gap: 7px; }
 .step-input {
-  background: transparent; border: none; outline: none;
-  color: var(--gold); font-family: var(--serif);
-  font-size: 58px; font-weight: 300; letter-spacing: -.01em;
-  width: 88px; text-align: right;
-  -webkit-appearance: none; -moz-appearance: textfield;
-  caret-color: var(--gold); line-height: 1;
-  padding: 0; margin: 0;
+  background: transparent; border: none; outline: none; color: var(--gold);
+  font-family: var(--serif); font-size: 58px; font-weight: 300; letter-spacing: -.01em;
+  width: 88px; text-align: right; -webkit-appearance: none; -moz-appearance: textfield;
+  caret-color: var(--gold); line-height: 1; padding: 0; margin: 0;
 }
-.step-input::-webkit-inner-spin-button,
-.step-input::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
-
-.step-min-word {
-  font-family: var(--sans); font-size: 12px; letter-spacing: .22em;
-  text-transform: uppercase; color: var(--gold-dim);
-  padding-bottom: 10px; /* optical baseline alignment with the tall number */
-}
-
-/* Quick presets */
-.presets {
-  display: flex; gap: 7px; justify-content: center; flex-wrap: wrap;
-}
-.chip {
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(240,200,100,0.11);
-  border-radius: 20px; color: var(--gold-dim);
-  font-family: var(--sans); font-size: 11px; letter-spacing: .08em;
-  padding: 5px 13px; cursor: pointer; transition: all .15s; -webkit-appearance: none;
-}
+.step-input::-webkit-inner-spin-button, .step-input::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+.step-min-word { font-family: var(--sans); font-size: 12px; letter-spacing: .22em; text-transform: uppercase; color: var(--gold-dim); padding-bottom: 10px; }
+.presets { display: flex; gap: 7px; justify-content: center; flex-wrap: wrap; }
+.chip { background: rgba(255,255,255,0.04); border: 1px solid rgba(240,200,100,0.11); border-radius: 20px; color: var(--gold-dim); font-family: var(--sans); font-size: 11px; letter-spacing: .08em; padding: 5px 13px; cursor: pointer; transition: all .15s; -webkit-appearance: none; }
 .chip:hover  { background: rgba(240,200,100,0.08); border-color: rgba(240,200,100,0.26); color: var(--gold-mid); }
 .chip.active { background: rgba(175,110,14,0.35); border-color: rgba(240,190,80,0.4); color: var(--gold); }
-
-/* ══ CALCULATE BUTTON ══ */
 .calc-wrap { width: 100%; margin-bottom: 18px; }
 .calc-btn {
-  width: 100%; background: rgba(165,95,12,0.48);
-  border: 1px solid rgba(240,185,70,0.28); border-radius: 18px;
-  color: var(--gold); font-family: var(--serif);
-  font-size: 17px; font-weight: 300; letter-spacing: .16em;
-  padding: 16px; cursor: pointer; transition: background .22s; -webkit-appearance: none;
+  width: 100%; background: rgba(165,95,12,0.48); border: 1px solid rgba(240,185,70,0.28);
+  border-radius: 18px; color: var(--gold); font-family: var(--serif); font-size: 17px;
+  font-weight: 300; letter-spacing: .16em; padding: 16px; cursor: pointer; transition: background .22s; -webkit-appearance: none;
 }
 .calc-btn:hover    { background: rgba(185,110,18,0.58); }
 .calc-btn:disabled { opacity: .4; cursor: not-allowed; }
-
-/* Error */
 .error-msg {
-  width: 100%; color: #c88080; font-family: var(--sans);
-  font-size: 13px; font-style: italic; letter-spacing: .04em;
-  margin-bottom: 14px; padding: 11px 16px; line-height: 1.6;
-  background: rgba(200,70,70,0.065); border-radius: 12px;
-  border: 1px solid rgba(200,70,70,0.12); display: none;
+  width: 100%; color: #c88080; font-family: var(--sans); font-size: 13px; font-style: italic;
+  letter-spacing: .04em; margin-bottom: 14px; padding: 11px 16px; line-height: 1.6;
+  background: rgba(200,70,70,0.065); border-radius: 12px; border: 1px solid rgba(200,70,70,0.12); display: none;
 }
-
-/* ══ RESULTS ══ */
 .results { display: none; width: 100%; }
 .results.visible { display: block; animation: fade-up .5s ease; }
 @keyframes fade-up { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
-
-.res-location {
-  font-family: var(--sans); font-size: 9.5px; letter-spacing: .26em;
-  text-transform: uppercase; color: var(--gold-dim); margin-bottom: 3px;
-}
-.res-date {
-  font-size: 15px; font-weight: 300; font-style: italic;
-  letter-spacing: .04em; color: var(--text-dim); margin-bottom: 24px;
-}
-
-.time-grid {
-  display: grid; grid-template-columns: 1fr 1fr 1fr;
-  gap: 6px; margin-bottom: 26px;
-}
+.res-location { font-family: var(--sans); font-size: 9.5px; letter-spacing: .26em; text-transform: uppercase; color: var(--gold-dim); margin-bottom: 3px; }
+.res-date { font-size: 15px; font-weight: 300; font-style: italic; letter-spacing: .04em; color: var(--text-dim); margin-bottom: 24px; }
+.time-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; margin-bottom: 26px; }
 .time-cell { text-align: center; }
-.tc-label {
-  font-family: var(--sans); font-size: 9px; letter-spacing: .2em;
-  text-transform: uppercase; color: var(--text-faint);
-  display: block; margin-bottom: 6px;
-}
-.tc-val {
-  font-size: 18px; font-weight: 300; letter-spacing: .03em;
-  color: rgba(235,210,140,0.82); transition: color 2.5s;
-}
+.tc-label { font-family: var(--sans); font-size: 9px; letter-spacing: .2em; text-transform: uppercase; color: var(--text-faint); display: block; margin-bottom: 6px; }
+.tc-val { font-size: 18px; font-weight: 300; letter-spacing: .03em; color: rgba(235,210,140,0.82); transition: color 2.5s; }
 body.in-bm .tc-val { color: #ffe060; }
-
 .divider { height: 1px; background: var(--gold-trace); margin-bottom: 26px; }
-
-.passed-note {
-  display: none; font-family: var(--sans); font-size: 12px; font-style: italic;
-  color: rgba(210,155,70,0.6); text-align: center; margin-bottom: 20px;
-  padding: 9px 14px; border: 1px solid rgba(210,155,70,0.13);
-  border-radius: 11px; background: rgba(210,155,70,0.055);
-}
-
-/* The hero alarm time */
+.passed-note { display: none; font-family: var(--sans); font-size: 12px; font-style: italic; color: rgba(210,155,70,0.6); text-align: center; margin-bottom: 20px; padding: 9px 14px; border: 1px solid rgba(210,155,70,0.13); border-radius: 11px; background: rgba(210,155,70,0.055); }
 .alarm-block { text-align: center; margin-bottom: 28px; }
-.alarm-eyebrow {
-  font-family: var(--sans); font-size: 9.5px; letter-spacing: .28em;
-  text-transform: uppercase; color: var(--gold-dim);
-  display: block; margin-bottom: 12px;
-}
-.alarm-time {
-  font-size: clamp(54px, 14vw, 72px); font-weight: 300; letter-spacing: .05em;
-  color: var(--gold); line-height: 1;
-  text-shadow: 0 0 40px rgba(240,200,100,0.28);
-  transition: color 2.5s, text-shadow 2.5s;
-}
+.alarm-eyebrow { font-family: var(--sans); font-size: 9.5px; letter-spacing: .28em; text-transform: uppercase; color: var(--gold-dim); display: block; margin-bottom: 12px; }
+.alarm-time { font-size: clamp(54px, 14vw, 72px); font-weight: 300; letter-spacing: .05em; color: var(--gold); line-height: 1; text-shadow: 0 0 40px rgba(240,200,100,0.28); transition: color 2.5s, text-shadow 2.5s; }
 body.in-bm .alarm-time { color: #ffe04a; text-shadow: 0 0 56px rgba(255,210,45,0.52); }
-
-/* Actions */
 .action-row { display: flex; gap: 10px; margin-bottom: 16px; }
-.action-btn {
-  flex: 1; border-radius: 14px; font-family: var(--serif);
-  font-size: 16px; font-weight: 300; letter-spacing: .08em;
-  padding: 14px; cursor: pointer; text-align: center;
-  transition: all .2s; -webkit-appearance: none;
-}
-.copy-btn {
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(240,200,100,0.2); color: var(--gold);
-}
+.action-btn { flex: 1; border-radius: 14px; font-family: var(--serif); font-size: 16px; font-weight: 300; letter-spacing: .08em; padding: 14px; cursor: pointer; text-align: center; transition: all .2s; -webkit-appearance: none; }
+.copy-btn { background: rgba(255,255,255,0.05); border: 1px solid rgba(240,200,100,0.2); color: var(--gold); }
 .copy-btn.done { color: #80d080; border-color: rgba(128,208,128,0.3); }
-.gcal-btn {
-  background: rgba(66,133,244,0.11); border: 1px solid rgba(66,133,244,0.28);
-  color: #8ab4f8; text-decoration: none;
-  display: flex; align-items: center; justify-content: center;
-}
-
-.footnote {
-  font-family: var(--sans); font-size: 11px; font-style: italic;
-  color: var(--text-faint); text-align: center; line-height: 1.75;
-}
-
-/* Footer */
-.footer {
-  font-family: var(--sans); font-size: 11px; font-style: italic;
-  letter-spacing: .12em; color: rgba(200,165,90,0.16);
-  margin-top: 48px; text-align: center;
-}
-
-/* Spinner */
-.spinner {
-  display: inline-block; width: 14px; height: 14px;
-  border: 1.5px solid rgba(240,200,100,0.22); border-top-color: var(--gold);
-  border-radius: 50%; animation: spin .7s linear infinite; vertical-align: middle;
-}
+.gcal-btn { background: rgba(66,133,244,0.11); border: 1px solid rgba(66,133,244,0.28); color: #8ab4f8; text-decoration: none; display: flex; align-items: center; justify-content: center; }
+.footnote { font-family: var(--sans); font-size: 11px; font-style: italic; color: var(--text-faint); text-align: center; line-height: 1.75; }
+.footer { font-family: var(--sans); font-size: 11px; font-style: italic; letter-spacing: .12em; color: rgba(200,165,90,0.16); margin-top: 48px; text-align: center; }
+.explainer-wrap { width: 100%; text-align: center; margin-bottom: 28px; }
+.explainer-toggle { font-family: var(--sans); font-size: 11px; letter-spacing: .16em; color: var(--gold-dim); background: none; border: none; cursor: pointer; padding: 4px 0; font-style: italic; transition: color .2s; -webkit-appearance: none; }
+.explainer-toggle:hover { color: var(--gold-mid); }
+.explainer-body { display: none; width: 100%; background: rgba(255,255,255,0.02); border: 1px solid var(--gold-trace); border-radius: 20px; padding: 26px 24px; margin-top: 14px; margin-bottom: 10px; text-align: left; }
+.explainer-body.open { display: block; animation: fade-up .4s ease; }
+.explainer-body p { font-size: 15px; font-weight: 300; line-height: 1.85; color: var(--text-dim); letter-spacing: .025em; margin-bottom: 14px; }
+.explainer-body p:last-child { margin-bottom: 0; }
+.explainer-body em { font-style: italic; color: var(--text); }
+.spinner { display: inline-block; width: 14px; height: 14px; border: 1.5px solid rgba(240,200,100,0.22); border-top-color: var(--gold); border-radius: 50%; animation: spin .7s linear infinite; vertical-align: middle; }
 @keyframes spin { to{transform:rotate(360deg)} }
 </style>
 </head>
@@ -416,26 +222,32 @@ body.in-bm .alarm-time { color: #ffe04a; text-shadow: 0 0 56px rgba(255,210,45,0
   <p class="subtitle">The Ambrosial Hours</p>
   <p class="today-label" id="todayLabel"></p>
 
-  <!-- In-BM Banner (hidden until triggered) -->
+  <div class="explainer-wrap">
+    <button class="explainer-toggle" id="explainerBtn" onclick="toggleExplainer()">What is Brahma Muh&#363;rta? &rarr;</button>
+    <div class="explainer-body" id="explainerBody">
+      <p>Brahma Muh&#363;rta &mdash; <em>the hour of Brahma</em> &mdash; is a sacred window that opens each day about 96 minutes before sunrise and closes 48 minutes later. In the Vedic tradition, it is considered the most auspicious time of day.</p>
+      <p>The mind is naturally quieter before the world wakes up. The air is still. There is a quality of spaciousness to these hours that most people never experience, simply because they are asleep through it.</p>
+      <p>Many practitioners of yoga and meditation consider Brahma Muh&#363;rta the single highest-leverage habit they&rsquo;ve developed &mdash; not because of any ritual, but because of what it feels like to begin your day in silence, before the noise begins.</p>
+      <p>You don&rsquo;t need a spiritual practice to benefit from it. Waking once during this window &mdash; even just to sit quietly with a cup of tea &mdash; tends to change the texture of the entire day.</p>
+    </div>
+  </div>
+
   <div class="bm-banner">
     <span class="bm-om">&#x1F549;</span>
     <div class="bm-title">You are within the window</div>
     <div class="bm-sub" id="bmCountdown">The sacred hours are open</div>
   </div>
 
-  <!-- Location -->
   <div class="card">
     <span class="card-label">Location</span>
     <div class="search-wrap" id="searchWrap">
-      <input class="search-input" id="cityInput" type="text"
-        placeholder="Search for a city&#8230;" autocomplete="off" spellcheck="false">
+      <input class="search-input" id="cityInput" type="text" placeholder="Search for a city&#8230;" autocomplete="off" spellcheck="false">
       <span class="check-mark">&#10003;</span>
       <div class="dropdown" id="dropdown"></div>
     </div>
     <div class="search-hint" id="searchHint">Type to search, then select from the list</div>
   </div>
 
-  <!-- Date -->
   <div class="card">
     <span class="card-label">Date</span>
     <div class="date-nav">
@@ -448,37 +260,33 @@ body.in-bm .alarm-time { color: #ffe04a; text-shadow: 0 0 56px rgba(255,210,45,0
     </div>
   </div>
 
-  <!-- Alarm Offset -->
   <div class="card">
     <span class="card-label">Alarm Offset</span>
     <p class="stepper-context">How many minutes before Brahma Muh&#363;rta begins?</p>
     <div class="stepper-row">
-      <button class="step-btn" onclick="nudge(-1)" id="btnMinus">&#8722;</button>
+      <button class="step-btn" onclick="nudge(-1)">&#8722;</button>
       <div class="step-value-group">
         <input class="step-input" id="offsetInput" type="number" value="15" min="0" max="120">
         <span class="step-min-word">min</span>
       </div>
-      <button class="step-btn" onclick="nudge(1)" id="btnPlus">+</button>
+      <button class="step-btn" onclick="nudge(1)">+</button>
     </div>
     <div class="presets" id="presets"></div>
   </div>
 
-  <!-- Error -->
   <div class="error-msg" id="errorMsg"></div>
 
-  <!-- Calculate -->
   <div class="calc-wrap">
     <button class="calc-btn" id="calcBtn" onclick="calculate()">Calculate</button>
   </div>
 
-  <!-- Results -->
   <div class="card results" id="results">
     <div class="res-location" id="resLoc"></div>
-    <div class="res-date"     id="resDate"></div>
+    <div class="res-date" id="resDate"></div>
     <div class="time-grid">
       <div class="time-cell"><span class="tc-label">BM Begins</span><div class="tc-val" id="tStart"></div></div>
-      <div class="time-cell"><span class="tc-label">BM Ends</span>  <div class="tc-val" id="tEnd"></div></div>
-      <div class="time-cell"><span class="tc-label">Sunrise</span>  <div class="tc-val" id="tSun"></div></div>
+      <div class="time-cell"><span class="tc-label">BM Ends</span><div class="tc-val" id="tEnd"></div></div>
+      <div class="time-cell"><span class="tc-label">Sunrise</span><div class="tc-val" id="tSun"></div></div>
     </div>
     <div class="divider"></div>
     <div class="passed-note" id="passedNote">This window has already passed today.</div>
@@ -487,10 +295,10 @@ body.in-bm .alarm-time { color: #ffe04a; text-shadow: 0 0 56px rgba(255,210,45,0
       <div class="alarm-time" id="alarmTime"></div>
     </div>
     <div class="action-row">
-      <button class="action-btn copy-btn" id="copyBtn" onclick="copyTime()">Copy</button>
+      <button class="action-btn copy-btn" id="copyBtn" onclick="copyTime()">Copy Time</button>
       <a class="action-btn gcal-btn" id="gcalLink" href="#" target="_blank">+ Calendar</a>
     </div>
-    <div class="footnote">Times shown in your device&#8217;s local timezone.<br>Tap Copy, then set the alarm in your Clock app.</div>
+    <div class="footnote">Open your Clock app and set an alarm for the time above.<br><em>iPhone doesn&#8217;t allow pasting into Clock &mdash; use this as your reference.</em></div>
   </div>
 
   <div class="footer">96 minutes before sunrise &middot; Classical Vedic reckoning</div>
@@ -499,29 +307,30 @@ body.in-bm .alarm-time { color: #ffe04a; text-shadow: 0 0 56px rgba(255,210,45,0
 <script>
 'use strict';
 
-/* ── STARS ── */
 (function(){
   const el = document.getElementById('stars');
   for (let i = 0; i < 88; i++) {
     const s = document.createElement('div');
     s.className = 'star';
-    s.style.top     = (Math.random() * 88) + '%';
-    s.style.left    = (Math.random() * 100) + '%';
+    s.style.top = (Math.random() * 88) + '%';
+    s.style.left = (Math.random() * 100) + '%';
     s.style.opacity = (Math.random() * 0.48 + 0.07).toFixed(2);
-    const sz = Math.random() > 0.8 ? '3px' : '2px';
-    s.style.width = s.style.height = sz;
+    s.style.width = s.style.height = Math.random() > 0.8 ? '3px' : '2px';
     el.appendChild(s);
   }
 })();
 
-/* ── TODAY LABEL ── */
 document.getElementById('todayLabel').textContent =
   new Date().toLocaleDateString([], { weekday:'long', month:'long', day:'numeric', year:'numeric' });
 
-/* ── DATE NAV ── */
 let currentDateStr = '';
 
-const isoToday = () => new Date().toISOString().split('T')[0];
+const isoToday = () => {
+  const d = new Date();
+  return d.getFullYear() + '-'
+    + String(d.getMonth() + 1).padStart(2, '0') + '-'
+    + String(d.getDate()).padStart(2, '0');
+};
 
 function toLocalDate(ds) {
   const [y,m,d] = ds.split('-').map(Number);
@@ -543,17 +352,10 @@ function renderDate(ds) {
   const tomorrow = offsetDate(today, 1);
   const dt       = toLocalDate(ds);
   const dayMonth = dt.toLocaleDateString([], { month:'long', day:'numeric' });
-
   document.getElementById('dateTag').textContent =
-    ds === today    ? 'Today' :
-    ds === tomorrow ? 'Tomorrow' :
-    dt.toLocaleDateString([], { weekday:'long' });
-
+    ds === today ? 'Today' : ds === tomorrow ? 'Tomorrow' : dt.toLocaleDateString([], { weekday:'long' });
   document.getElementById('dateMain').textContent =
-    (ds === today || ds === tomorrow)
-      ? dayMonth
-      : dayMonth + ', ' + dt.getFullYear();
-
+    (ds === today || ds === tomorrow) ? dayMonth : dayMonth + ', ' + dt.getFullYear();
   document.getElementById('prevDate').disabled = (ds <= today);
 }
 
@@ -567,14 +369,13 @@ function shiftDate(delta) {
 currentDateStr = defaultDate();
 renderDate(currentDateStr);
 
-/* ── OFFSET STEPPER ── */
 const PRESETS = [
   { label:'at start', v:0 },
-  { label:'5 min',    v:5 },
-  { label:'10 min',   v:10 },
-  { label:'15 min',   v:15 },
-  { label:'20 min',   v:20 },
-  { label:'30 min',   v:30 },
+  { label:'5 min', v:5 },
+  { label:'10 min', v:10 },
+  { label:'15 min', v:15 },
+  { label:'20 min', v:20 },
+  { label:'30 min', v:30 },
 ];
 
 const offsetInput = document.getElementById('offsetInput');
@@ -609,7 +410,6 @@ function buildPresets() {
 }
 buildPresets();
 
-/* ── AUTOCOMPLETE ── */
 let debounce, focusIdx = -1;
 let lat = null, lon = null, locName = null, confirmed = false;
 
@@ -618,19 +418,14 @@ const dropdown   = document.getElementById('dropdown');
 const searchHint = document.getElementById('searchHint');
 
 function confirmLocation(p) {
-  /* Build a clean city name from Nominatim address fields */
-  const a    = p.address || {};
-  const city = a.city || a.town || a.village || a.municipality
-             || a.county || p.display_name.split(',')[0].trim();
+  const a = p.address || {};
+  const city = a.city || a.town || a.village || a.municipality || a.county || p.display_name.split(',')[0].trim();
   const region  = a.state || a.province || a.state_district || '';
   const country = a.country || '';
-  const sub     = [region, country].filter(Boolean).join(', ');
-
-  lat      = p.lat;
-  lon      = p.lon;
-  locName  = city + (sub ? ', ' + sub : '');
+  const sub = [region, country].filter(Boolean).join(', ');
+  lat = p.lat; lon = p.lon;
+  locName = city + (sub ? ', ' + sub : '');
   confirmed = true;
-
   cityInput.value = city + (region ? ', ' + region : '') + (country ? ', ' + country : '');
   cityInput.classList.add('confirmed');
   searchHint.textContent = '✓ Location confirmed';
@@ -639,8 +434,7 @@ function confirmLocation(p) {
 }
 
 function clearConfirm() {
-  lat = lon = locName = null;
-  confirmed = false;
+  lat = lon = locName = null; confirmed = false;
   cityInput.classList.remove('confirmed');
   searchHint.textContent = 'Type to search, then select from the list';
   searchHint.classList.remove('ok');
@@ -656,48 +450,36 @@ cityInput.addEventListener('input', () => {
 
 cityInput.addEventListener('keydown', e => {
   const items = dropdown.querySelectorAll('.drop-item');
-  if      (e.key === 'ArrowDown')  { e.preventDefault(); focusIdx = Math.min(focusIdx+1, items.length-1); syncFocus(items); }
-  else if (e.key === 'ArrowUp')    { e.preventDefault(); focusIdx = Math.max(focusIdx-1, 0); syncFocus(items); }
-  else if (e.key === 'Enter')      { focusIdx >= 0 && items[focusIdx] ? items[focusIdx].click() : calculate(); }
-  else if (e.key === 'Escape')     { closeDropdown(); }
+  if      (e.key === 'ArrowDown') { e.preventDefault(); focusIdx = Math.min(focusIdx+1, items.length-1); syncFocus(items); }
+  else if (e.key === 'ArrowUp')   { e.preventDefault(); focusIdx = Math.max(focusIdx-1, 0); syncFocus(items); }
+  else if (e.key === 'Enter')     { focusIdx >= 0 && items[focusIdx] ? items[focusIdx].click() : calculate(); }
+  else if (e.key === 'Escape')    { closeDropdown(); }
 });
 
-document.addEventListener('click', e => {
-  if (!e.target.closest('#searchWrap')) closeDropdown();
-});
+document.addEventListener('click', e => { if (!e.target.closest('#searchWrap')) closeDropdown(); });
 
-function syncFocus(items) {
-  items.forEach((it, i) => it.classList.toggle('focused', i === focusIdx));
-}
+function syncFocus(items) { items.forEach((it, i) => it.classList.toggle('focused', i === focusIdx)); }
 
 async function queryCities(q) {
   try {
-    const res = await fetch(
-      'https://nominatim.openstreetmap.org/search?q=' + encodeURIComponent(q)
-      + '&format=json&limit=6&addressdetails=1&accept-language=en'
-    );
+    const res = await fetch('https://nominatim.openstreetmap.org/search?q=' + encodeURIComponent(q) + '&format=json&limit=6&addressdetails=1&accept-language=en');
     if (!res.ok) return;
     renderDropdown(await res.json());
   } catch { closeDropdown(); }
 }
 
 function renderDropdown(places) {
-  dropdown.innerHTML = '';
-  focusIdx = -1;
+  dropdown.innerHTML = ''; focusIdx = -1;
   if (!places.length) { closeDropdown(); return; }
-
   places.forEach(p => {
-    const a      = p.address || {};
-    const city   = a.city || a.town || a.village || a.municipality
-                 || a.county || p.display_name.split(',')[0].trim();
+    const a = p.address || {};
+    const city = a.city || a.town || a.village || a.municipality || a.county || p.display_name.split(',')[0].trim();
     const region = a.state || a.province || a.state_district || '';
     const country = a.country || '';
-    const sub    = [region, country].filter(Boolean).join(', ');
-
+    const sub = [region, country].filter(Boolean).join(', ');
     const item = document.createElement('div');
     item.className = 'drop-item';
-    item.innerHTML = '<div class="drop-main">' + escHtml(city) + '</div>'
-      + (sub ? '<div class="drop-sub">' + escHtml(sub) + '</div>' : '');
+    item.innerHTML = '<div class="drop-main">' + escHtml(city) + '</div>' + (sub ? '<div class="drop-sub">' + escHtml(sub) + '</div>' : '');
     item.addEventListener('mousedown', e => e.preventDefault());
     item.onclick = () => confirmLocation(p);
     dropdown.appendChild(item);
@@ -707,49 +489,32 @@ function renderDropdown(places) {
 
 function closeDropdown() { dropdown.style.display = 'none'; focusIdx = -1; }
 
-function escHtml(s) {
-  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-}
+function escHtml(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 
-/* ── UTILITIES ── */
 const fmt = d => d.toLocaleTimeString([], { hour:'2-digit', minute:'2-digit' });
-
 function fmtGCal(d) { return d.toISOString().replace(/[-:.]/g,'').slice(0,15)+'Z'; }
 
 function niceDate(ds) {
-  const today    = isoToday();
-  const tomorrow = offsetDate(today, 1);
+  const today = isoToday(), tomorrow = offsetDate(today, 1);
   const dt = toLocalDate(ds);
   const md = dt.toLocaleDateString([], { month:'long', day:'numeric' });
-  if (ds === today)    return 'Today — ' + md;
-  if (ds === tomorrow) return 'Tomorrow — ' + md;
+  if (ds === today)    return 'Today \u2014 ' + md;
+  if (ds === tomorrow) return 'Tomorrow \u2014 ' + md;
   return dt.toLocaleDateString([], { weekday:'long', month:'long', day:'numeric', year:'numeric' });
 }
 
-/* ── CACHED DATA & ALARM UPDATE ── */
 let cached = null;
 
 function updateAlarmDisplay() {
   if (!cached) return;
   const alarm = new Date(cached.bmStart.getTime() - getOffset() * 60000);
   document.getElementById('alarmTime').textContent = fmt(alarm);
-
   const title   = encodeURIComponent('Brahma Muhurta');
-  const details = encodeURIComponent(
-    'Brahma Muhurta: ' + fmt(cached.bmStart) + ' \u2013 ' + fmt(cached.bmEnd)
-    + '\nSunrise: ' + fmt(cached.sunrise)
-    + '\nLocation: ' + locName
-  );
-  document.getElementById('gcalLink').href =
-    'https://calendar.google.com/calendar/render?action=TEMPLATE'
-    + '&text=' + title
-    + '&dates=' + fmtGCal(alarm) + '/' + fmtGCal(cached.bmEnd)
-    + '&details=' + details;
-
+  const details = encodeURIComponent('Brahma Muhurta: ' + fmt(cached.bmStart) + ' \u2013 ' + fmt(cached.bmEnd) + '\nSunrise: ' + fmt(cached.sunrise) + '\nLocation: ' + locName);
+  document.getElementById('gcalLink').href = 'https://calendar.google.com/calendar/render?action=TEMPLATE&text=' + title + '&dates=' + fmtGCal(alarm) + '/' + fmtGCal(cached.bmEnd) + '&details=' + details;
   window._alarmTime = alarm;
 }
 
-/* ── IN-BM MODE ── */
 let bmTick;
 function checkBM(bmStart, bmEnd) {
   clearInterval(bmTick);
@@ -765,97 +530,58 @@ function checkBM(bmStart, bmEnd) {
     document.body.classList.remove('in-bm');
   }
 }
+
 function tickCountdown(bmEnd) {
   const mins = Math.round((bmEnd - new Date()) / 60000);
-  document.getElementById('bmCountdown').textContent =
-    mins > 1 ? 'Closes in ' + mins + ' minutes' : 'Closing within the minute';
+  document.getElementById('bmCountdown').textContent = mins > 1 ? 'Closes in ' + mins + ' minutes' : 'Closing within the minute';
 }
 
-/* ── CALCULATE ── */
 async function calculate() {
-  if (!confirmed) {
-    showErr('Please type a city and select it from the dropdown to confirm your location.');
-    return;
-  }
-
+  if (!confirmed) { showErr('Please type a city and select it from the dropdown to confirm your location.'); return; }
   const btn = document.getElementById('calcBtn');
-  btn.innerHTML = '<span class="spinner"></span>';
-  btn.disabled = true;
-  hideErr();
-
+  btn.innerHTML = '<span class="spinner"></span>'; btn.disabled = true; hideErr();
   try {
-    const res  = await fetch(
-      'https://api.sunrise-sunset.org/json?lat=' + lat
-      + '&lng=' + lon
-      + '&date=' + currentDateStr
-      + '&formatted=0'
-    );
+    const res  = await fetch('https://api.sunrise-sunset.org/json?lat=' + lat + '&lng=' + lon + '&date=' + currentDateStr + '&formatted=0');
     const data = await res.json();
-
     if (data.status !== 'OK') { showErr('Could not retrieve sunrise data. Please try again.'); resetBtn(); return; }
-
     const sunrise = new Date(data.results.sunrise);
     const bmStart = new Date(sunrise.getTime() - 96 * 60000);
     const bmEnd   = new Date(sunrise.getTime() - 48 * 60000);
     cached = { sunrise, bmStart, bmEnd };
-
     document.getElementById('resLoc').textContent  = locName.toUpperCase();
     document.getElementById('resDate').textContent = niceDate(currentDateStr);
     document.getElementById('tStart').textContent  = fmt(bmStart);
     document.getElementById('tEnd').textContent    = fmt(bmEnd);
     document.getElementById('tSun').textContent    = fmt(sunrise);
-
-    document.getElementById('passedNote').style.display =
-      (currentDateStr === isoToday() && new Date() > bmEnd) ? 'block' : 'none';
-
+    document.getElementById('passedNote').style.display = (currentDateStr === isoToday() && new Date() > bmEnd) ? 'block' : 'none';
     updateAlarmDisplay();
-
     const results = document.getElementById('results');
-    results.classList.add('visible');
-    hideErr();
-    checkBM(bmStart, bmEnd);
-
-    /* Smooth scroll to results on mobile */
+    results.classList.add('visible'); hideErr(); checkBM(bmStart, bmEnd);
     setTimeout(() => results.scrollIntoView({ behavior:'smooth', block:'start' }), 80);
-
-  } catch {
-    showErr('Network error — please check your connection and try again.');
-  }
-
+  } catch { showErr('Network error \u2014 please check your connection and try again.'); }
   resetBtn();
 }
 
-function resetBtn() {
-  const btn = document.getElementById('calcBtn');
-  btn.textContent = 'Calculate'; btn.disabled = false;
-}
-function showErr(msg) {
-  const el = document.getElementById('errorMsg');
-  el.textContent = msg; el.style.display = 'block';
-  resetBtn();
-}
+function resetBtn() { const btn = document.getElementById('calcBtn'); btn.textContent = 'Calculate'; btn.disabled = false; }
+function showErr(msg) { const el = document.getElementById('errorMsg'); el.textContent = msg; el.style.display = 'block'; resetBtn(); }
 function hideErr() { document.getElementById('errorMsg').style.display = 'none'; }
 
-/* ── COPY ── */
 function copyTime() {
   if (!window._alarmTime) return;
   const text = fmt(window._alarmTime);
   const btn  = document.getElementById('copyBtn');
-  const done = () => {
-    btn.textContent = '✓ Copied'; btn.classList.add('done');
-    setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('done'); }, 2400);
-  };
-  navigator.clipboard
-    ? navigator.clipboard.writeText(text).then(done).catch(() => fbCopy(text, done))
-    : fbCopy(text, done);
+  const done = () => { btn.textContent = '\u2713 Copied'; btn.classList.add('done'); setTimeout(() => { btn.textContent = 'Copy Time'; btn.classList.remove('done'); }, 2400); };
+  navigator.clipboard ? navigator.clipboard.writeText(text).then(done).catch(() => fbCopy(text, done)) : fbCopy(text, done);
 }
-function fbCopy(text, cb) {
-  const el = document.createElement('textarea');
-  el.value = text; document.body.appendChild(el); el.select();
-  document.execCommand('copy'); document.body.removeChild(el); cb();
+function fbCopy(text, cb) { const el = document.createElement('textarea'); el.value = text; document.body.appendChild(el); el.select(); document.execCommand('copy'); document.body.removeChild(el); cb(); }
+
+function toggleExplainer() {
+  const body = document.getElementById('explainerBody');
+  const btn  = document.getElementById('explainerBtn');
+  const open = body.classList.toggle('open');
+  btn.innerHTML = open ? 'What is Brahma Muh\u016Brta? \u2193' : 'What is Brahma Muh\u016Brta? \u2192';
 }
 
-/* ── SERVICE WORKER ── */
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(()=>{}));
 }
